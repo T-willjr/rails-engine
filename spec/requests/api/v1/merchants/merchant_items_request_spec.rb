@@ -11,7 +11,7 @@ RSpec.describe "Gets All Items For A Given Merchant ID" do
 		get "/api/v1/merchants/#{merchant1.id}/items"
 
 		merchant1_items = JSON.parse(response.body, symbolize_names: true)
-
+		
 		expect(response).to be_successful 
 		expect(merchant1_items.count).to eq(2)
 
