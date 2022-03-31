@@ -4,12 +4,7 @@ class Api::V1::ItemsController < ApplicationController
   end 
 
   def show
-    if params[:name].present?
-      item = Item.search(params[:name]).first 
-      render json: ItemSerializer.new(Item.find(item.id))
-    else 
       render json: ItemSerializer.new(Item.find(params[:id]))
-    end
   end 
 
   def create 
@@ -22,6 +17,11 @@ class Api::V1::ItemsController < ApplicationController
 
   def destroy 
     render json: Item.destroy(params[:id])
+  end 
+
+  def find 
+    item = Item.search(params[:name]).first 
+    render json: ItemSerializer.new(Item.find(item.id))
   end 
 
   private 
