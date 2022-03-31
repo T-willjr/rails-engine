@@ -4,7 +4,12 @@ class Api::V1::ItemsController < ApplicationController
   end 
 
   def show
-    render json: ItemSerializer.new(Item.find(params[:id]))
+    if params[:name].present?
+      item = Item.search(params[:name]).first 
+      render json: ItemSerializer.new(Item.find(item.id))
+    else 
+      render json: ItemSerializer.new(Item.find(params[:id]))
+    end
   end 
 
   def create 
