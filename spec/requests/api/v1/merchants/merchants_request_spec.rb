@@ -9,14 +9,11 @@ RSpec.describe "Get All Merchants" do
 
     merchants = JSON.parse(response.body, symbolize_names: true)  
     expect(response).to be_successful 
-    expect(merchants.count). to eq(3)
 
-    expect(merchants.last).to have_key(:id)
-    expect(merchants.last[:id]).to be_an(Integer)
-
-    expect(merchants.last).to have_key(:name)
-    expect(merchants.last[:name]).to be_a(String)
-
+    expect(merchants.count).to eq(1)
+    expect(merchants[:data].first).to have_key(:id)
+ 
+	 expect(merchants[:data].first[:attributes]).to have_key(:name)
     expect(merchants.count).to_not eq(0)
  end 
 end 
