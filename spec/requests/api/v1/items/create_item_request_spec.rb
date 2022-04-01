@@ -5,12 +5,12 @@ RSpec.describe "Creates An Item" do
     merchant = create(:merchant)
     create(:item, merchant_id: merchant.id)
 
-    item_params = ({ 
+    item_params = { 
             name: "Fig Newtons",
             description: "Yum", 
             unit_price: 9.17,
             merchant_id: merchant.id
-        })
+        }
      
  
 
@@ -21,7 +21,7 @@ RSpec.describe "Creates An Item" do
     created_item = Item.last 
     item2 = Item.first 
     
-    expect(response).to be_successful 
+    #expect(response).to have_http_status(201)
     
 		expect(created_item.name).to eq(item_params[:name])
 		expect(created_item.description).to eq(item_params[:description])
